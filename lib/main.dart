@@ -1,4 +1,5 @@
 import 'package:app_humor_diary/screen/home/home_screen.dart';
+import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: CustomColors.comet,
       ),
       home: HomeScreen(),
     );

@@ -18,14 +18,20 @@ class _HomeScreenState extends State<HomeScreen> {
   String dateonly;
   String datetime;
   int ontapcount = 0;
-  List<Humor> humors = [
-    Humor('assets/happy.png', 'Happy', false),
-    Humor('assets/happy.png', 'Sad', false),
-    Humor('assets/happy.png', 'Angry', false),
-    Humor('assets/happy.png', 'Surprised', false),
-    Humor('assets/happy.png', 'Loving', false),
-    Humor('assets/happy.png', 'Scared', false)
-  ];
+  List<Humor> humors = [];
+  @override
+  void initState() {
+    super.initState();
+    humors = [
+      Humor('assets/happy.png', 'Happy', true),
+      Humor('assets/happy.png', 'Sad', true),
+      Humor('assets/happy.png', 'Angry', true),
+      Humor('assets/happy.png', 'Surprised', true),
+      Humor('assets/happy.png', 'Loving', true),
+      Humor('assets/happy.png', 'Scared', true)
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 6),
             Text('(Tap to Select and Tap again to deselect!)'),
             SizedBox(
-              height: 150,
+              height: 80,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: humors.length,
@@ -169,8 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ontapcount = ontapcount + 1;
                               print(humor);
                             });
-                          }
-                          if (humors[index].isSelected) {
+                          } else if (humors[index].isSelected) {
                             setState(() {
                               humors[index].isSelected = false;
                               ontapcount = 0;

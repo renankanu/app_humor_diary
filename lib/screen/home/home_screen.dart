@@ -1,3 +1,5 @@
+import 'package:app_humor_diary/model/humor.dart';
+import 'package:app_humor_diary/screen/widgets/humor_icon.dart';
 import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +11,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String humor;
+  String image;
   String datepicked;
   String timepicked;
   String dateonly;
   String datetime;
+  int ontapcount = 0;
+  List<Humor> humors = [
+    Humor('assets/happy.png', 'Happy', false),
+    Humor('assets/happy.png', 'Sad', false),
+    Humor('assets/happy.png', 'Angry', false),
+    Humor('assets/happy.png', 'Surprised', false),
+    Humor('assets/happy.png', 'Loving', false),
+    Humor('assets/happy.png', 'Scared', false)
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,7 +134,62 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 40),
+            Text(
+              "WHAT YOU FEELING NOW?",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 6),
+            Text('(Tap to Select and Tap again to deselect!)'),
+            SizedBox(
+              height: 150,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: humors.length,
+                  itemBuilder: (context, index) {
+                    return Row(children: <Widget>[
+                      SizedBox(
+                        width: 15,
+                      ),
+                      GestureDetector(
+                        child: HumorIcon(
+                          image: humors[index].image,
+                          name: humors[index].name,
+                          colour: humors[index].isSelected
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                        onTap: () {
+                          if (ontapcount == 0) {
+                            setState(() {
+                              humor = humors[index].name;
+                              image = humors[index].image;
+                              humors[index].isSelected = true;
+                              ontapcount = ontapcount + 1;
+                              print(humor);
+                            });
+                          }
+                          if (humors[index].isSelected) {
+                            setState(() {
+                              humors[index].isSelected = false;
+                              ontapcount = 0;
+                            });
+                          }
+                        },
+                      )
+                    ]);
+                  }),
+            ),
+            Text(
+              'WHAT YOU HAVE BEEN DOING?',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Hold on the activity to select,You can choose multiple',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+            ),
           ],
         ),
       ),

@@ -3,5 +3,5 @@ class Humor {
   String image;
   bool isSelected;
 
-  Humor(this.name, this.image, this.isSelected);
+  Humor(this.image, this.name, this.isSelected);
 }

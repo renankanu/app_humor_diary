@@ -1,9 +1,13 @@
+import 'package:app_humor_diary/model/activity.dart';
 import 'package:app_humor_diary/model/humor.dart';
+import 'package:app_humor_diary/model/moodcard.dart';
+import 'package:app_humor_diary/screen/widgets/activity_icon.dart';
 import 'package:app_humor_diary/screen/widgets/humor_icon.dart';
 import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,19 +22,29 @@ class _HomeScreenState extends State<HomeScreen> {
   String dateonly;
   String datetime;
   int ontapcount = 0;
-  List<Humor> humors = [];
-  @override
-  void initState() {
-    super.initState();
-    humors = [
-      Humor('assets/happy.png', 'Happy', true),
-      Humor('assets/happy.png', 'Sad', true),
-      Humor('assets/happy.png', 'Angry', true),
-      Humor('assets/happy.png', 'Surprised', true),
-      Humor('assets/happy.png', 'Loving', true),
-      Humor('assets/happy.png', 'Scared', true)
-    ];
-  }
+  List<Humor> humors = [
+    Humor('assets/happy.png', 'Happy', true),
+    Humor('assets/sad.png', 'Sad', true),
+    Humor('assets/angry.png', 'Angry', true),
+    Humor('assets/surprised.png', 'Surprised', true),
+    Humor('assets/loving.png', 'Loving', true),
+    Humor('assets/feared.png', 'Scared', true)
+  ];
+  List<Activity> activities = [
+    Activity('assets/sleeping.png', 'Sports', false),
+    Activity('assets/sleeping.png', 'Sleep', false),
+    Activity('assets/sleeping.png', 'Shop', false),
+    Activity('assets/sleeping.png', 'Relax', false),
+    Activity('assets/sleeping.png', 'Read', false),
+    Activity('assets/sleeping.png', 'Movies', false),
+    Activity('assets/sleeping.png', 'Gaming', false),
+    Activity('assets/sleeping.png', 'Friends', false),
+    Activity('assets/sleeping.png', 'Family', false),
+    Activity('assets/sleeping.png', 'Excercise', false),
+    Activity('assets/sleeping.png', 'Eat', false),
+    Activity('assets/sleeping.png', 'Date', false),
+    Activity('assets/sleeping.png', 'Clean', false)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -159,30 +173,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 15,
                       ),
                       GestureDetector(
-                        child: HumorIcon(
-                          image: humors[index].image,
-                          name: humors[index].name,
-                          colour: humors[index].isSelected
-                              ? Colors.black
-                              : Colors.white,
-                        ),
-                        onTap: () {
-                          if (ontapcount == 0) {
-                            setState(() {
-                              humor = humors[index].name;
-                              image = humors[index].image;
-                              humors[index].isSelected = true;
-                              ontapcount = ontapcount + 1;
-                              print(humor);
-                            });
-                          } else if (humors[index].isSelected) {
-                            setState(() {
-                              humors[index].isSelected = false;
-                              ontapcount = 0;
-                            });
-                          }
-                        },
-                      )
+                          child: HumorIcon(
+                              image: humors[index].image,
+                              name: humors[index].name,
+                              colour: humors[index].isSelected
+                                  ? Colors.black
+                                  : Colors.white),
+                          onTap: () => {
+                                if (ontapcount == 0)
+                                  {
+                                    setState(() {
+                                      humor = humors[index].name;
+                                      image = humors[index].image;
+                                      humors[index].isSelected = true;
+                                      ontapcount = ontapcount + 1;
+                                      print(humor);
+                                    }),
+                                  }
+                                else if (humors[index].isSelected)
+                                  {
+                                    setState(() {
+                                      humors[index].isSelected = false;
+                                      ontapcount = 0;
+                                    })
+                                  }
+                              }),
                     ]);
                   }),
             ),
@@ -195,6 +210,43 @@ class _HomeScreenState extends State<HomeScreen> {
               'Hold on the activity to select,You can choose multiple',
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
             ),
+            SizedBox(
+              height: 80,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: activities.length,
+                  itemBuilder: (BuildContext nContext, index) {
+                    return Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: 15,
+                        ),
+                        GestureDetector(
+                            child: ActivityIcon(
+                                activities[index].image,
+                                activities[index].name,
+                                activities[index].selected
+                                    ? Colors.black
+                                    : Colors.white),
+                            onLongPress: () => {
+                                  if (activities[index].selected)
+                                    {
+                                      setState(() {
+                                        activities[index].selected = false;
+                                      })
+                                    }
+                                  else
+                                    setState(() {
+                                      activities[index].selected = true;
+                                      Provider.of<MoodCard>(context,
+                                              listen: false)
+                                          .add(activities[index]);
+                                    }),
+                                }),
+                      ],
+                    );
+                  }),
+            )
           ],
         ),
       ),

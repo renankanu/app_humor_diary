@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+
+class ActivityIcon extends StatelessWidget {
+  String image;
+  String name;
+  Color colour;
+  ActivityIcon(this.image, this.name, this.colour);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 90,
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              image,
+              height: 45,
+              width: 45,
+            ),
+            Text(name)
+          ],
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(color: colour),
+        ));
+  }
+}

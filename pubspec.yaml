@@ -56,6 +56,17 @@ flutter:
     - assets/surprised.png
     - assets/sport.png
     - assets/sleeping.png
+    - assets/shop.png
+    - assets/relax.png
+    - assets/read.png
+    - assets/movies.png
+    - assets/gaming.png
+    - assets/celebrate.png
+    - assets/music.png
+    - assets/excercise.png
+    - assets/eat.png
+    - assets/date.png
+    - assets/clean.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

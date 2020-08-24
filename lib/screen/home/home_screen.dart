@@ -23,27 +23,27 @@ class _HomeScreenState extends State<HomeScreen> {
   String datetime;
   int ontapcount = 0;
   List<Humor> humors = [
-    Humor('assets/happy.png', 'Happy', true),
-    Humor('assets/sad.png', 'Sad', true),
-    Humor('assets/angry.png', 'Angry', true),
-    Humor('assets/surprised.png', 'Surprised', true),
-    Humor('assets/loving.png', 'Loving', true),
-    Humor('assets/feared.png', 'Scared', true)
+    Humor('assets/happy.png', 'Happy', false),
+    Humor('assets/sad.png', 'Sad', false),
+    Humor('assets/angry.png', 'Angry', false),
+    Humor('assets/surprised.png', 'Surprised', false),
+    Humor('assets/loving.png', 'Loving', false),
+    Humor('assets/feared.png', 'Scared', false)
   ];
   List<Activity> activities = [
-    Activity('assets/sleeping.png', 'Sports', false),
+    Activity('assets/sport.png', 'Sports', false),
     Activity('assets/sleeping.png', 'Sleep', false),
-    Activity('assets/sleeping.png', 'Shop', false),
-    Activity('assets/sleeping.png', 'Relax', false),
-    Activity('assets/sleeping.png', 'Read', false),
-    Activity('assets/sleeping.png', 'Movies', false),
-    Activity('assets/sleeping.png', 'Gaming', false),
-    Activity('assets/sleeping.png', 'Friends', false),
-    Activity('assets/sleeping.png', 'Family', false),
-    Activity('assets/sleeping.png', 'Excercise', false),
-    Activity('assets/sleeping.png', 'Eat', false),
-    Activity('assets/sleeping.png', 'Date', false),
-    Activity('assets/sleeping.png', 'Clean', false)
+    Activity('assets/shop.png', 'Shop', false),
+    Activity('assets/relax.png', 'Relax', false),
+    Activity('assets/read.png', 'Read', false),
+    Activity('assets/movies.png', 'Movies', false),
+    Activity('assets/gaming.png', 'Gaming', false),
+    Activity('assets/celebrate.png', 'Drink', false),
+    Activity('assets/music.png', 'Music', false),
+    Activity('assets/excercise.png', 'Excercise', false),
+    Activity('assets/eat.png', 'Eat', false),
+    Activity('assets/date.png', 'Date', false),
+    Activity('assets/clean.png', 'Clean', false)
   ];
 
   @override

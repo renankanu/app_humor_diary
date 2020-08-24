@@ -9,15 +9,18 @@ class ActivityIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: 90,
-        child: Column(
-          children: <Widget>[
-            Image.asset(
-              image,
-              height: 45,
-              width: 45,
-            ),
-            Text(name)
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Image.asset(
+                image,
+                height: 36,
+                width: 36,
+              ),
+              Text(name)
+            ],
+          ),
         ),
         decoration: BoxDecoration(
           border: Border.all(color: colour),

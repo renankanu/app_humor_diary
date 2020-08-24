@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Humor Diary',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          scaffoldBackgroundColor: CustomColors.comet,
-        ),
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            scaffoldBackgroundColor: CustomColors.comet,
+            fontFamily: 'Quicksand'),
         home: HomeScreen(),
       ),
     );

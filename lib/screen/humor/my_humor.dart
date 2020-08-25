@@ -1,7 +1,7 @@
 import 'package:app_humor_diary/helper/db_helper.dart';
 import 'package:app_humor_diary/helper/humordata.dart';
 import 'package:app_humor_diary/model/humor_card.dart';
-import 'package:app_humor_diary/screen/widgets/mooddaycard.dart';
+import 'package:app_humor_diary/screen/widgets/humor_day_card.dart';
 import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +85,7 @@ class _MyHumorState extends State<MyHumor> {
                                           ? charts.ColorUtil.fromDartColor(Colors.green)
                                           : snapshot.data[position]['humor'] == 'Surprised' ? charts.ColorUtil.fromDartColor(Colors.pink) : snapshot.data[position]['humor'] == 'Loving' ? charts.ColorUtil.fromDartColor(Colors.purple) : snapshot.data[position]['humor'] == 'Scared' ? charts.ColorUtil.fromDartColor(Colors.black) : charts.ColorUtil.fromDartColor(Colors.white)));
 
-                          return MoodDay(
+                          return HumorDay(
                               snapshot.data[position]['image'],
                               snapshot.data[position]['datetime'],
                               snapshot.data[position]['humor'],

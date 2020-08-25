@@ -21,32 +21,30 @@ showLoaderDialog(BuildContext context) {
   );
 }
 
-class MoodDay extends StatefulWidget {
+class HumorDay extends StatefulWidget {
   String datetime;
   String humor;
   String image;
   List<String> a;
   List<String> b;
 
-  MoodDay(this.image, this.datetime, this.humor, this.a, this.b);
+  HumorDay(this.image, this.datetime, this.humor, this.a, this.b);
 
   @override
-  _MoodDayState createState() => _MoodDayState();
+  _HumorDayState createState() => _HumorDayState();
 }
 
-class _MoodDayState extends State<MoodDay> {
+class _HumorDayState extends State<HumorDay> {
   bool isloading = true;
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 100,
-        width: 80,
         child: Card(
           child: Column(children: <Widget>[
             Row(
               children: <Widget>[
                 Container(
-                  color: Colors.red,
                   child: Image.asset(widget.image),
                   height: 45,
                   width: 45,

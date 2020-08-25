@@ -6,6 +6,7 @@ import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class MyHumor extends StatefulWidget {
@@ -25,13 +26,15 @@ class _MyHumorState extends State<MyHumor> {
               elevation: 0,
               backgroundColor: CustomColors.comet,
               centerTitle: true,
-              leading: new IconButton(
-                icon: new Icon(
-                  Icons.arrow_back,
-                  size: 24,
-                  color: CustomColors.watusi,
+              leading: Center(
+                child: IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.arrowLeft,
+                    color: CustomColors.forgetMeMot,
+                    size: 16,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
-                onPressed: () => Navigator.of(context).pop(),
               ),
               actions: <Widget>[
                 IconButton(

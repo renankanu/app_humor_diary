@@ -1,29 +1,42 @@
+import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class ActivityIcon extends StatelessWidget {
   String image;
   String name;
-  Color colour;
-  ActivityIcon(this.image, this.name, this.colour);
+  bool isSelected;
+  ActivityIcon(this.image, this.name, this.isSelected);
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 90,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Image.asset(
-                image,
-                height: 36,
-                width: 36,
-              ),
-              Text(name)
-            ],
-          ),
+      width: 80,
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              image,
+              height: 36,
+              width: 36,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              name,
+              style: TextStyle(fontWeight: FontWeight.w700),
+            )
+          ],
         ),
-        decoration: BoxDecoration(
-          border: Border.all(color: colour),
-        ));
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+            color:
+                isSelected ? CustomColors.gunPowder : CustomColors.forgetMeMot,
+            width: 2),
+        color: CustomColors.forgetMeMot,
+      ),
+    );
   }
 }

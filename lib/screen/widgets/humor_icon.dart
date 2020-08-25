@@ -1,15 +1,17 @@
+import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 
 class HumorIcon extends StatelessWidget {
   String image;
   String name;
-  Color colour;
-  HumorIcon({this.name, this.image, this.colour});
+  bool isSelected;
+  HumorIcon({this.name, this.image, this.isSelected});
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 85,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
             Image.asset(
@@ -17,14 +19,24 @@ class HumorIcon extends StatelessWidget {
               height: 36,
               width: 36,
             ),
-            Text(name)
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              name,
+              style: TextStyle(fontWeight: FontWeight.w700),
+            )
           ],
         ),
       ),
       decoration: BoxDecoration(
-        border: Border.all(color: colour),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+            color:
+                isSelected ? CustomColors.gunPowder : CustomColors.forgetMeMot,
+            width: 2),
+        color: CustomColors.forgetMeMot,
       ),
-      width: 90,
     );
   }
 }

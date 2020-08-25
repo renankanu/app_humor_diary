@@ -29,6 +29,7 @@ class DBHelper {
 
   static Future<void> delete(String datetime) async {
     final db = await DBHelper.dataBase();
-    await db.rawDelete('DELETE FROM user_moods WHERE datetime = ?', [datetime]);
+    await db
+        .rawDelete('DELETE FROM user_humors WHERE datetime = ?', [datetime]);
   }
 }

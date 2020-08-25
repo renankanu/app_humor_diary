@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'activity.dart';
 
-class MoodCard extends ChangeNotifier {
+class HumorCard extends ChangeNotifier {
   String datetime;
   String mood;
   List<String> activityname = [];
@@ -12,7 +12,8 @@ class MoodCard extends ChangeNotifier {
   String image;
   String actimage;
   String actname;
-  MoodCard({this.actimage, this.actname, this.datetime, this.image, this.mood});
+  HumorCard(
+      {this.actimage, this.actname, this.datetime, this.image, this.mood});
   List items;
   List<Humor> data = [];
   String date;
@@ -26,11 +27,11 @@ class MoodCard extends ChangeNotifier {
 
   notifyListeners();
 
-  Future<void> addPlace(String datetime, String mood, String image,
+  Future<void> addPlace(String datetime, String humor, String image,
       String actimage, String actname, String date) async {
-    DBHelper.insert('user_moods', {
+    DBHelper.insert('user_humors', {
       'datetime': datetime,
-      'mood': mood,
+      'humor': humor,
       'image': image,
       'actimage': actimage,
       'actname': actname,

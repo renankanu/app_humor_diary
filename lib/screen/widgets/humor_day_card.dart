@@ -41,89 +41,105 @@ class _HumorDayState extends State<HumorDay> {
     return Container(
         height: 100,
         child: Card(
-          child: Column(children: <Widget>[
-            Row(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Stack(
               children: <Widget>[
-                Container(
-                  child: Image.asset(widget.image),
-                  height: 45,
-                  width: 45,
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Image.asset(widget.image),
+                      height: 45,
+                      width: 45,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              SizedBox(width: 10),
+                              Text(
+                                widget.humor,
+                                style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                widget.datetime ?? 'nothing',
+                                style: TextStyle(
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
+                              ),
+                              SizedBox(width: 30),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          SizedBox(
+                            height: 24,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: widget.a.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    width: 80,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Image.asset(widget.a[index]),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: widget.b.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    width: 80,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          widget.b[index] ?? 'nothinng',
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.normal,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                          ),
+                        ]),
+                  ],
                 ),
-                SizedBox(width: 15),
-                Text(
-                  widget.humor,
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                SizedBox(width: 10),
-                Text(
-                  widget.datetime ?? 'nothing',
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-                SizedBox(width: 30),
-                IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () async {
-                      Provider.of<HumorCard>(context, listen: false).isloading =
-                          true;
-                      await Provider.of<HumorCard>(context, listen: false)
-                          .deletePlaces(widget.datetime);
-                      Provider.of<HumorCard>(context, listen: false).isloading =
-                          false;
-                    })
+                Positioned(
+                    right: 0,
+                    child: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () async {
+                          Provider.of<HumorCard>(context, listen: false)
+                              .isloading = true;
+                          await Provider.of<HumorCard>(context, listen: false)
+                              .deletePlaces(widget.datetime);
+                          Provider.of<HumorCard>(context, listen: false)
+                              .isloading = false;
+                        }))
               ],
             ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  SizedBox(width: 80),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: widget.a.length,
-                      itemBuilder: (context, index) {
-                        return Row(
-                          children: <Widget>[
-                            Image.asset(widget.a[index]),
-                            SizedBox(width: 25)
-                          ],
-                        );
-                      }),
-                ],
-              ),
-            ),
-            SizedBox(width: 50),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  SizedBox(width: 80),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: widget.b.length,
-                      itemBuilder: (context, index) {
-                        return Row(
-                          children: <Widget>[
-                            Text(
-                              widget.b[index] ?? 'nothinng',
-                              style: TextStyle(
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            SizedBox(width: 10)
-                          ],
-                        );
-                      }),
-                ],
-              ),
-            ),
-          ]),
+          ),
         ));
   }
 }

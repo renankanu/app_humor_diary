@@ -6,14 +6,14 @@ import 'activity.dart';
 
 class HumorCard extends ChangeNotifier {
   String datetime;
-  String mood;
+  String humor;
   List<String> activityname = [];
   List<String> activityimage = [];
   String image;
   String actimage;
   String actname;
   HumorCard(
-      {this.actimage, this.actname, this.datetime, this.image, this.mood});
+      {this.actimage, this.actname, this.datetime, this.image, this.humor});
   List items;
   List<HumorData> data = [];
   String date;

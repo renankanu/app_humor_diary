@@ -1,5 +1,5 @@
 import 'package:app_humor_diary/helper/db_helper.dart';
-import 'package:app_humor_diary/model/humor.dart';
+import 'package:app_humor_diary/helper/humordata.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'activity.dart';
@@ -15,7 +15,7 @@ class HumorCard extends ChangeNotifier {
   HumorCard(
       {this.actimage, this.actname, this.datetime, this.image, this.mood});
   List items;
-  List<Humor> data = [];
+  List<HumorData> data = [];
   String date;
   bool isloading = false;
   List<String> actiname = [];

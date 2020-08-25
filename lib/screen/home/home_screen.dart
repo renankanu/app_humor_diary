@@ -143,16 +143,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                   })
                                 }),
                       ),
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: CustomColors.gunPowder,
-                        ),
-                        child: Icon(
-                          Icons.done,
-                          color: CustomColors.forgetMeMot,
+                      GestureDetector(
+                        onTap: () => {
+                          setState(() {
+                            datetime = datepicked + '   ' + timepicked;
+                          }),
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: CustomColors.gunPowder,
+                          ),
+                          child: Icon(
+                            Icons.done,
+                            color: CustomColors.forgetMeMot,
+                          ),
                         ),
                       )
                     ],

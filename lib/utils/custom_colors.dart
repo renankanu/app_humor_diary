@@ -5,4 +5,5 @@ class CustomColors {
   static const Color forgetMeMot = Color(0xFFFFF1EB);
   static const Color watusi = Color(0xFFFFE4D5);
   static const Color gunPowder = Color(0xFF42435E);
+  static const Color gunPowder30 = Color(0x4D42435E);
 }

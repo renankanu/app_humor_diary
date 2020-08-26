@@ -21,24 +21,15 @@ showLoaderDialog(BuildContext context) {
   );
 }
 
-class ScreenArguments {
-  String datetime;
-  String humor;
-  String image;
-  List<String> a;
-  List<String> b;
-
-  ScreenArguments(this.datetime, this.humor, this.image, this.a, this.b);
-}
-
 class HumorDay extends StatefulWidget {
   String datetime;
   String humor;
   String image;
-  List<String> a;
-  List<String> b;
+  List<String> imagesActivities;
+  List<String> descriptionsActivities;
 
-  HumorDay(this.image, this.datetime, this.humor, this.a, this.b);
+  HumorDay(this.image, this.datetime, this.humor, this.imagesActivities,
+      this.descriptionsActivities);
 
   @override
   _HumorDayState createState() => _HumorDayState();
@@ -52,8 +43,13 @@ class _HumorDayState extends State<HumorDay> {
         height: 100,
         child: GestureDetector(
           onTap: () => {
-            Navigator.of(context).pushNamed('/my_humor_detail',
-                arguments: {'datetime': widget.datetime, 'humor': widget.humor})
+            Navigator.of(context).pushNamed('/my_humor_detail', arguments: {
+              'datetime': widget.datetime,
+              'humor': widget.humor,
+              'image': widget.image,
+              'imagesActivities': widget.imagesActivities,
+              'descriptionsActivities': widget.descriptionsActivities
+            })
           },
           child: Card(
             child: Padding(
@@ -98,7 +94,7 @@ class _HumorDayState extends State<HumorDay> {
                               child: ListView.builder(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: widget.a.length,
+                                  itemCount: widget.imagesActivities.length,
                                   itemBuilder: (context, index) {
                                     return Container(
                                       width: 80,
@@ -106,7 +102,8 @@ class _HumorDayState extends State<HumorDay> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: <Widget>[
-                                          Image.asset(widget.a[index]),
+                                          Image.asset(
+                                              widget.imagesActivities[index]),
                                         ],
                                       ),
                                     );
@@ -116,7 +113,8 @@ class _HumorDayState extends State<HumorDay> {
                               child: ListView.builder(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: widget.b.length,
+                                  itemCount:
+                                      widget.descriptionsActivities.length,
                                   itemBuilder: (context, index) {
                                     return Container(
                                       width: 80,
@@ -125,7 +123,9 @@ class _HumorDayState extends State<HumorDay> {
                                             MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            widget.b[index] ?? 'nothinng',
+                                            widget.descriptionsActivities[
+                                                    index] ??
+                                                'nothinng',
                                             style: TextStyle(
                                                 fontStyle: FontStyle.normal,
                                                 fontWeight: FontWeight.bold,

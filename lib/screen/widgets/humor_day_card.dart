@@ -1,5 +1,7 @@
 import 'package:app_humor_diary/model/humor_card.dart';
+import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 showLoaderDialog(BuildContext context) {
@@ -40,7 +42,7 @@ class _HumorDayState extends State<HumorDay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 100,
+        height: 138,
         child: GestureDetector(
           onTap: () => {
             Navigator.of(context).pushNamed('/my_humor_detail', arguments: {
@@ -53,104 +55,45 @@ class _HumorDayState extends State<HumorDay> {
           },
           child: Card(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Stack(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
                 children: <Widget>[
+                  Container(
+                    child: Image.asset(widget.image),
+                    height: 32,
+                    width: 32,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Are you feeling: " + widget.humor,
+                    style: TextStyle(
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  ),
+                  SizedBox(height: 10),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        child: Image.asset(widget.image),
-                        height: 45,
-                        width: 45,
+                      FaIcon(
+                        FontAwesomeIcons.calendar,
+                        color: CustomColors.comet,
+                        size: 15,
                       ),
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                SizedBox(width: 10),
-                                Text(
-                                  widget.humor,
-                                  style: TextStyle(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  widget.datetime ?? 'nothing',
-                                  style: TextStyle(
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                                SizedBox(width: 30),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            Expanded(
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: widget.imagesActivities.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      width: 80,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Image.asset(
-                                              widget.imagesActivities[index]),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            ),
-                            Expanded(
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount:
-                                      widget.descriptionsActivities.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      width: 80,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Text(
-                                            widget.descriptionsActivities[
-                                                    index] ??
-                                                'nothinng',
-                                            style: TextStyle(
-                                                fontStyle: FontStyle.normal,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 15),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ]),
+                      SizedBox(width: 10),
+                      Text(
+                        widget.datetime ?? 'no date',
+                        style: TextStyle(
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
                     ],
                   ),
-                  Positioned(
-                      right: 0,
-                      child: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () async {
-                            Provider.of<HumorCard>(context, listen: false)
-                                .isloading = true;
-                            await Provider.of<HumorCard>(context, listen: false)
-                                .deletePlaces(widget.datetime);
-                            Provider.of<HumorCard>(context, listen: false)
-                                .isloading = false;
-                          }))
+                  SizedBox(width: 30),
+                  SizedBox(
+                    height: 16,
+                  ),
                 ],
               ),
             ),

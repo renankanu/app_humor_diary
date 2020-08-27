@@ -9,17 +9,30 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-showLoaderDialog(BuildContext context) {
+showLoaderDialog(BuildContext context, String message) {
   AlertDialog alert = AlertDialog(
-    content: new Row(
-      children: [
-        Container(
-            margin: EdgeInsets.only(left: 5), child: Text("Deleting entry...")),
-      ],
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(15))),
+    title: Text('Oppps!'),
+    content: Container(
+      height: 120,
+      child: Stack(
+        children: <Widget>[
+          Text(message),
+          Positioned(
+            bottom: 12,
+            right: 12,
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK')),
+          )
+        ],
+      ),
     ),
   );
   showDialog(
-    barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
       return alert;
@@ -327,7 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.of(context).pushNamed('/my_humor'),
                           }
                         else
-                          {showLoaderDialog(context)}
+                          {showLoaderDialog(context, 'Oppaaaaaaaa!')}
                       },
                       child: Center(
                         child: Row(

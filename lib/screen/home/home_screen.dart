@@ -9,6 +9,24 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+showLoaderDialog(BuildContext context) {
+  AlertDialog alert = AlertDialog(
+    content: new Row(
+      children: [
+        Container(
+            margin: EdgeInsets.only(left: 5), child: Text("Deleting entry...")),
+      ],
+    ),
+  );
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -79,6 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 20,
                 ),
+                Text(
+                  "Choose date and time",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
@@ -143,23 +168,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                   })
                                 }),
                       ),
-                      GestureDetector(
-                        onTap: () => {
+                      RawMaterialButton(
+                        fillColor: CustomColors.comet,
+                        splashColor: CustomColors.gunPowder,
+                        onPressed: () {
                           setState(() {
                             datetime = datepicked + '   ' + timepicked;
-                          }),
+                          });
                         },
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: CustomColors.gunPowder,
+                        child: Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            child: Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.check,
+                                size: 16,
+                                color: CustomColors.forgetMeMot,
+                              ),
+                            ),
                           ),
-                          child: Icon(
-                            Icons.done,
-                            color: CustomColors.forgetMeMot,
-                          ),
+                        ),
+                        constraints:
+                            BoxConstraints(minWidth: 36, minHeight: 36),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       )
                     ],
@@ -234,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     activities[index].image,
                                     activities[index].name,
                                     activities[index].selected),
-                                onLongPress: () => {
+                                onTap: () => {
                                       if (activities[index].selected)
                                         {
                                           setState(() {
@@ -272,21 +306,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 60,
                     child: GestureDetector(
                       onTap: () => {
-                        setState(() {
-                          Provider.of<HumorCard>(context, listen: false)
-                              .addPlace(
-                                  datetime,
-                                  humor,
-                                  image,
-                                  Provider.of<HumorCard>(context, listen: false)
-                                      .activityimage
-                                      .join('_'),
-                                  Provider.of<HumorCard>(context, listen: false)
-                                      .activityname
-                                      .join('_'),
-                                  dateonly);
-                        }),
-                        Navigator.of(context).pushNamed('/my_humor'),
+                        if (datetime != null)
+                          {
+                            setState(() {
+                              Provider.of<HumorCard>(context, listen: false)
+                                  .addPlace(
+                                      datetime,
+                                      humor,
+                                      image,
+                                      Provider.of<HumorCard>(context,
+                                              listen: false)
+                                          .activityimage
+                                          .join('_'),
+                                      Provider.of<HumorCard>(context,
+                                              listen: false)
+                                          .activityname
+                                          .join('_'),
+                                      dateonly);
+                            }),
+                            Navigator.of(context).pushNamed('/my_humor'),
+                          }
+                        else
+                          {showLoaderDialog(context)}
                       },
                       child: Center(
                         child: Row(

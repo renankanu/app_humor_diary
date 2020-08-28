@@ -23,34 +23,36 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   String dateonly;
   String datetime;
   int ontapcount = 0;
-  List<Humor> humors = [
-    Humor('assets/happy.png', 'Happy', false),
-    Humor('assets/sad.png', 'Sad', false),
-    Humor('assets/angry.png', 'Angry', false),
-    Humor('assets/surprised.png', 'Surprised', false),
-    Humor('assets/loving.png', 'Loving', false),
-    Humor('assets/feared.png', 'Scared', false)
-  ];
-  List<Activity> activities = [
-    Activity('assets/sport.png', 'Sports', false),
-    Activity('assets/sleeping.png', 'Sleep', false),
-    Activity('assets/shop.png', 'Shop', false),
-    Activity('assets/relax.png', 'Relax', false),
-    Activity('assets/read.png', 'Read', false),
-    Activity('assets/movies.png', 'Movies', false),
-    Activity('assets/gaming.png', 'Gaming', false),
-    Activity('assets/celebrate.png', 'Drink', false),
-    Activity('assets/music.png', 'Music', false),
-    Activity('assets/exercise.png', 'Excercise', false),
-    Activity('assets/eat.png', 'Eat', false),
-    Activity('assets/date.png', 'Date', false),
-    Activity('assets/clean.png', 'Clean', false)
-  ];
+  List<Humor> humors = [];
+  List<Activity> activities = [];
 
   @override
   void initState() {
-    print('Initialll');
+    humors = [
+      Humor('assets/happy.png', 'Happy', false),
+      Humor('assets/sad.png', 'Sad', false),
+      Humor('assets/angry.png', 'Angry', false),
+      Humor('assets/surprised.png', 'Surprised', false),
+      Humor('assets/loving.png', 'Loving', false),
+      Humor('assets/feared.png', 'Scared', false)
+    ];
+    activities = [
+      Activity('assets/sport.png', 'Sports', false),
+      Activity('assets/sleeping.png', 'Sleep', false),
+      Activity('assets/shop.png', 'Shop', false),
+      Activity('assets/relax.png', 'Relax', false),
+      Activity('assets/read.png', 'Read', false),
+      Activity('assets/movies.png', 'Movies', false),
+      Activity('assets/gaming.png', 'Gaming', false),
+      Activity('assets/celebrate.png', 'Drink', false),
+      Activity('assets/music.png', 'Music', false),
+      Activity('assets/exercise.png', 'Excercise', false),
+      Activity('assets/eat.png', 'Eat', false),
+      Activity('assets/date.png', 'Date', false),
+      Activity('assets/clean.png', 'Clean', false)
+    ];
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -62,6 +64,39 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     print(state);
+  }
+
+  void clearValues() {
+    humor = null;
+    image = null;
+    datepicked = null;
+    timepicked = null;
+    dateonly = null;
+    datetime = null;
+    ontapcount = 0;
+    humors = [
+      Humor('assets/happy.png', 'Happy', false),
+      Humor('assets/sad.png', 'Sad', false),
+      Humor('assets/angry.png', 'Angry', false),
+      Humor('assets/surprised.png', 'Surprised', false),
+      Humor('assets/loving.png', 'Loving', false),
+      Humor('assets/feared.png', 'Scared', false)
+    ];
+    activities = [
+      Activity('assets/sport.png', 'Sports', false),
+      Activity('assets/sleeping.png', 'Sleep', false),
+      Activity('assets/shop.png', 'Shop', false),
+      Activity('assets/relax.png', 'Relax', false),
+      Activity('assets/read.png', 'Read', false),
+      Activity('assets/movies.png', 'Movies', false),
+      Activity('assets/gaming.png', 'Gaming', false),
+      Activity('assets/celebrate.png', 'Drink', false),
+      Activity('assets/music.png', 'Music', false),
+      Activity('assets/exercise.png', 'Excercise', false),
+      Activity('assets/eat.png', 'Eat', false),
+      Activity('assets/date.png', 'Date', false),
+      Activity('assets/clean.png', 'Clean', false)
+    ];
   }
 
   @override
@@ -333,6 +368,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                           .join('_'),
                                       dateonly);
                             }),
+                            clearValues(),
                             Navigator.of(context).pushNamed('/my_humor'),
                           }
                         else

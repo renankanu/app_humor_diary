@@ -9,7 +9,7 @@ class ActivityIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80,
+      width: 82,
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Column(

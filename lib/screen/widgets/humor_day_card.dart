@@ -54,6 +54,7 @@ class _HumorDayState extends State<HumorDay> {
             })
           },
           child: Card(
+            color: CustomColors.forgetMeMot,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(

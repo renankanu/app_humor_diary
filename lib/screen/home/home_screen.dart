@@ -305,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         return Row(
                           children: <Widget>[
                             SizedBox(
-                              width: 15,
+                              width: 7.5,
                             ),
                             GestureDetector(
                                 child: ActivityIcon(
@@ -327,6 +327,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                               .add(activities[index]);
                                         }),
                                     }),
+                            SizedBox(
+                              width: 7.5,
+                            ),
                           ],
                         );
                       }),

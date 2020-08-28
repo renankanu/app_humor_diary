@@ -2,6 +2,7 @@ import 'package:app_humor_diary/model/activity.dart';
 import 'package:app_humor_diary/model/humor.dart';
 import 'package:app_humor_diary/model/humor_card.dart';
 import 'package:app_humor_diary/screen/widgets/activity_icon.dart';
+import 'package:app_humor_diary/screen/widgets/custom_modal.dart';
 import 'package:app_humor_diary/screen/widgets/humor_icon.dart';
 import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,43 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-showLoaderDialog(BuildContext context, String message) {
-  AlertDialog alert = AlertDialog(
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(15))),
-    title: Text('Oppps!'),
-    content: Container(
-      height: 120,
-      child: Stack(
-        children: <Widget>[
-          Text(message),
-          Positioned(
-            bottom: 12,
-            right: 12,
-            child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Text('OK')),
-          )
-        ],
-      ),
-    ),
-  );
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   String humor;
   String image;
   String datepicked;
@@ -76,6 +46,23 @@ class _HomeScreenState extends State<HomeScreen> {
     Activity('assets/date.png', 'Date', false),
     Activity('assets/clean.png', 'Clean', false)
   ];
+
+  @override
+  void initState() {
+    print('Initialll');
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,9 +172,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         fillColor: CustomColors.comet,
                         splashColor: CustomColors.gunPowder,
                         onPressed: () {
-                          setState(() {
-                            datetime = datepicked + '   ' + timepicked;
-                          });
+                          if (datepicked != null && timepicked != null) {
+                            setState(() {
+                              datetime = datepicked + '   ' + timepicked;
+                            });
+                            return;
+                          }
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return CustomModal(
+                                    message: 'Select date and time.');
+                              });
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10.0),
@@ -340,7 +336,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.of(context).pushNamed('/my_humor'),
                           }
                         else
-                          {showLoaderDialog(context, 'Oppaaaaaaaa!')}
+                          {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return CustomModal(
+                                      message: 'Ohhh mano, deu cerTo');
+                                })
+                          }
                       },
                       child: Center(
                         child: Row(

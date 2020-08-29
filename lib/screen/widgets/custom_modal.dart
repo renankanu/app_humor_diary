@@ -1,3 +1,4 @@
+import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,18 +19,25 @@ class _CustomModalState extends State<CustomModal> {
           borderRadius: BorderRadius.all(Radius.circular(15))),
       title: Text('Oppps!'),
       content: Container(
-        height: 120,
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(widget.message),
-            Positioned(
-              bottom: 12,
-              right: 12,
-              child: GestureDetector(
-                  onTap: () {
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                OutlineButton(
+                  splashColor: CustomColors.comet,
+                  child: Text('OK'),
+                  onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('OK')),
+                ),
+              ],
             )
           ],
         ),

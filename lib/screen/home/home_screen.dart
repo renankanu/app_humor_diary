@@ -66,6 +66,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     print(state);
   }
 
+  void callModal(BuildContext context, String message) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomModal(message: message);
+        });
+  }
+
   void clearValues() {
     humor = null;
     image = null;
@@ -99,6 +107,52 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     ];
   }
 
+  bool checkHumor() {
+    if ((humors.singleWhere((it) => it.isSelected == true,
+            orElse: () => null)) !=
+        null) {
+      return true;
+    }
+    return false;
+  }
+
+  bool checkActivities() {
+    if ((activities.singleWhere((it) => it.selected == true,
+            orElse: () => null)) !=
+        null) {
+      return true;
+    }
+    return false;
+  }
+
+  void validHumor() {
+    if (datetime == null) {
+      callModal(context, 'Select date and time.');
+      return;
+    }
+    if (!checkHumor()) {
+      callModal(context, 'Select your mood.');
+      return;
+    }
+    if (!checkActivities()) {
+      callModal(context, 'Select at least one activity.');
+      return;
+    }
+    setState(() {
+      Provider.of<HumorCard>(context, listen: false).addPlace(
+          datetime,
+          humor,
+          image,
+          Provider.of<HumorCard>(context, listen: false)
+              .activityimage
+              .join('_'),
+          Provider.of<HumorCard>(context, listen: false).activityname.join('_'),
+          dateonly);
+    });
+    clearValues();
+    Navigator.of(context).pushNamed('/my_humor');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,11 +162,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: Icon(
-              Icons.menu,
+            icon: FaIcon(
+              FontAwesomeIcons.listUl,
               color: CustomColors.watusi,
             ),
-            onPressed: () {},
+            onPressed: () {
+              clearValues();
+              Navigator.of(context).pushNamed('/my_humor');
+            },
           ),
         ],
       ),
@@ -213,12 +270,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                             });
                             return;
                           }
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return CustomModal(
-                                    message: 'Select date and time.');
-                              });
+                          callModal(context, 'Select date and time.');
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10.0),
@@ -352,38 +404,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   child: Container(
                     height: 60,
                     child: GestureDetector(
-                      onTap: () => {
-                        if (datetime != null)
-                          {
-                            setState(() {
-                              Provider.of<HumorCard>(context, listen: false)
-                                  .addPlace(
-                                      datetime,
-                                      humor,
-                                      image,
-                                      Provider.of<HumorCard>(context,
-                                              listen: false)
-                                          .activityimage
-                                          .join('_'),
-                                      Provider.of<HumorCard>(context,
-                                              listen: false)
-                                          .activityname
-                                          .join('_'),
-                                      dateonly);
-                            }),
-                            clearValues(),
-                            Navigator.of(context).pushNamed('/my_humor'),
-                          }
-                        else
-                          {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return CustomModal(
-                                      message: 'Ohhh mano, deu cerTo');
-                                })
-                          }
-                      },
+                      onTap: () => {validHumor()},
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -105,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       Activity('assets/date.png', 'Date', false),
       Activity('assets/clean.png', 'Clean', false)
     ];
+    Provider.of<HumorCard>(context, listen: false).clear();
   }
 
   bool checkHumor() {
@@ -369,6 +370,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                         {
                                           setState(() {
                                             activities[index].selected = false;
+                                            Provider.of<HumorCard>(context,
+                                                    listen: false)
+                                                .remove(activities[index]);
                                           })
                                         }
                                       else

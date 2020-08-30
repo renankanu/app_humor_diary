@@ -1,4 +1,5 @@
 import 'package:app_humor_diary/model/humor_card.dart';
+import 'package:app_humor_diary/screen/chart/chart_screen.dart';
 import 'package:app_humor_diary/screen/home/home_screen.dart';
 import 'package:app_humor_diary/screen/humor/my_humor.dart';
 import 'package:app_humor_diary/screen/humor_detail/my_humor_detail.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/my_humor': (ctx) => MyHumor(),
           '/my_humor_detail': (ctx) => MyHumorDetail(),
+          '/chart': (ctx) => HumorChart(),
         },
       ),
     );

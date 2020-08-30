@@ -31,18 +31,21 @@ class _MyHumorState extends State<MyHumor> {
                   icon: FaIcon(
                     FontAwesomeIcons.arrowLeft,
                     color: CustomColors.forgetMeMot,
-                    size: 16,
+                    size: 18,
                   ),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
               actions: <Widget>[
                 IconButton(
-                  icon: Icon(
-                    Icons.menu,
+                  icon: FaIcon(
+                    FontAwesomeIcons.chartPie,
                     color: CustomColors.watusi,
+                    size: 18,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/chart');
+                  },
                 ),
               ],
             ),
@@ -62,31 +65,56 @@ class _MyHumorState extends State<MyHumor> {
                           Provider.of<HumorCard>(context, listen: false)
                               .actiname
                               .addAll(name);
-                          Provider.of<HumorCard>(context, listen: false).data.add(HumorData(
-                              snapshot.data[position]['humor'] == 'Angry'
-                                  ? 1
-                                  : snapshot.data[position]['humor'] == 'Happy'
-                                      ? 2
-                                      : snapshot.data[position]['humor'] == 'Sad'
-                                          ? 3
-                                          : snapshot.data[position]['humor'] == 'Surprised'
-                                              ? 4
-                                              : snapshot.data[position]['humor'] == 'Loving'
-                                                  ? 5
+                          Provider.of<HumorCard>(context, listen: false)
+                              .data
+                              .add(
+                                HumorData(
+                                  snapshot.data[position]['humor'] == 'Angry'
+                                      ? 1
+                                      : snapshot.data[position]['humor'] ==
+                                              'Happy'
+                                          ? 2
+                                          : snapshot.data[position]['humor'] ==
+                                                  'Sad'
+                                              ? 3
+                                              : snapshot.data[position]
+                                                          ['humor'] ==
+                                                      'Surprised'
+                                                  ? 4
                                                   : snapshot.data[position]
                                                               ['humor'] ==
-                                                          'Scared'
-                                                      ? 6
-                                                      : 7,
-                              snapshot.data[position]['date'],
-                              snapshot.data[position]['humor'] == 'Angry'
-                                  ? charts.ColorUtil.fromDartColor(Colors.red)
-                                  : snapshot.data[position]['humor'] == 'Happy'
+                                                          'Loving'
+                                                      ? 5
+                                                      : snapshot.data[position]
+                                                                  ['humor'] ==
+                                                              'Scared'
+                                                          ? 6
+                                                          : 7,
+                                  snapshot.data[position]['date'],
+                                  snapshot.data[position]['humor'] == 'Angry'
                                       ? charts.ColorUtil.fromDartColor(
-                                          Colors.blue)
-                                      : snapshot.data[position]['humor'] == 'Sad'
-                                          ? charts.ColorUtil.fromDartColor(Colors.green)
-                                          : snapshot.data[position]['humor'] == 'Surprised' ? charts.ColorUtil.fromDartColor(Colors.pink) : snapshot.data[position]['humor'] == 'Loving' ? charts.ColorUtil.fromDartColor(Colors.purple) : snapshot.data[position]['humor'] == 'Scared' ? charts.ColorUtil.fromDartColor(Colors.black) : charts.ColorUtil.fromDartColor(Colors.white)));
+                                          Colors.red)
+                                      : snapshot.data[position]['humor'] == 'Happy'
+                                          ? charts.ColorUtil.fromDartColor(
+                                              Colors.blue)
+                                          : snapshot.data[position]['humor'] == 'Sad'
+                                              ? charts.ColorUtil.fromDartColor(
+                                                  Colors.green)
+                                              : snapshot.data[position]['humor'] ==
+                                                      'Surprised'
+                                                  ? charts.ColorUtil.fromDartColor(
+                                                      Colors.pink)
+                                                  : snapshot.data[position]['humor'] ==
+                                                          'Loving'
+                                                      ? charts.ColorUtil.fromDartColor(
+                                                          Colors.purple)
+                                                      : snapshot.data[position]
+                                                                  ['humor'] ==
+                                                              'Scared'
+                                                          ? charts.ColorUtil.fromDartColor(Colors.black)
+                                                          : charts.ColorUtil.fromDartColor(Colors.white),
+                                ),
+                              );
 
                           return HumorDay(
                               snapshot.data[position]['image'],

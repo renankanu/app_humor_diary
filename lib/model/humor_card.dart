@@ -25,6 +25,16 @@ class HumorCard extends ChangeNotifier {
     activityname.add(act.name);
   }
 
+  void remove(Activity act) {
+    activityimage.remove(act.image);
+    activityname.remove(act.name);
+  }
+
+  void clear() {
+    activityimage.clear();
+    activityname.clear();
+  }
+
   notifyListeners();
 
   Future<void> addPlace(String datetime, String humor, String image,

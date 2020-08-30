@@ -1,5 +1,6 @@
 import 'package:app_humor_diary/helper/humordata.dart';
 import 'package:app_humor_diary/model/humor_card.dart';
+import 'package:app_humor_diary/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:pie_chart/pie_chart.dart';
@@ -124,84 +125,15 @@ class _HumorChartState extends State<HumorChart> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text('Mood Graph'), backgroundColor: Colors.red),
+      appBar: AppBar(
+          elevation: 0,
+          title: Text('Humor Graph'),
+          backgroundColor: CustomColors.comet),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              width: 300,
-              child: Card(
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(width: 120),
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          '1-',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '2-',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '3-',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '4-',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '5-',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '6-',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    SizedBox(width: 20),
-                    Column(children: <Widget>[
-                      Text(
-                        'Angry',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Happy',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Sad',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Surprised',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Loving',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Scared',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ])
-                  ],
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                height: 200,
-                width: 300,
-                child: charts.BarChart(
-                  series,
-                  animate: true,
-                ),
-              ),
+            SizedBox(
+              height: 80,
             ),
             PieChart(
               dataMap: dataMap,
@@ -214,13 +146,20 @@ class _HumorChartState extends State<HumorChart> {
               chartValueBackgroundColor: Colors.grey[200],
               showLegends: true,
               legendPosition: LegendPosition.right,
-              decimalPlaces: 1,
+              legendStyle: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: CustomColors.watusi),
+              decimalPlaces: 0,
               showChartValueLabel: true,
               initialAngle: 0,
               chartValueStyle: defaultChartValueStyle.copyWith(
                 color: Colors.blueGrey[900].withOpacity(0.9),
               ),
               chartType: ChartType.disc,
+            ),
+            SizedBox(
+              height: 80,
             ),
             Container(
               height: 330,
@@ -236,7 +175,11 @@ class _HumorChartState extends State<HumorChart> {
                 chartValueBackgroundColor: Colors.grey[200],
                 showLegends: true,
                 legendPosition: LegendPosition.right,
-                decimalPlaces: 1,
+                legendStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: CustomColors.watusi),
+                decimalPlaces: 0,
                 showChartValueLabel: true,
                 initialAngle: 0,
                 chartValueStyle: defaultChartValueStyle.copyWith(

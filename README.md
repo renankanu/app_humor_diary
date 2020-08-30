@@ -1,16 +1,20 @@
-# app_humor_diary
+# App Humor Diary
 
-A new Flutter project.
+<p align="center">
+  <img src="./print/print1.png" width="150" title="print one">
+  <img src="./print/print2.png" width="150" alt="print two">
+  <img src="./print/print3.png" width="150" alt="print three">
+  <img src="./print/print4.png" width="150" alt="print four">
+</p>
 
-## Getting Started
+## Flutter
 
-This project is a starting point for a Flutter application.
+- [Flutter.dev](https://flutter.dev/)
 
-A few resources to get you started if this is your first Flutter project:
+## Plugins used
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [sqflite](https://pub.dev/packages/sqflite): ^1.3.1
+- [provider](https://pub.dev/packages/provider): ^4.3.2+1
+- [charts_flutter](https://pub.dev/packages/charts_flutter): ^0.9.0
+- [pie_chart](https://pub.dev/packages/pie_chart): ^3.1.1
+- [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter): ^8.8.1

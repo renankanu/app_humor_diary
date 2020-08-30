@@ -1,5 +1,7 @@
 # App Humor Diary
 
+I am studying Flutter and I created this application for learning. There is still room for improvement, so I am open to any feedback. Sharing with each other helps us grow and learn. ✌️
+
 <p align="center">
   <img src="./print/print1.png" width="150" title="print one">
   <img src="./print/print2.png" width="150" alt="print two">
